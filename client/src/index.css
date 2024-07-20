@@ -18,8 +18,46 @@
   height: 100%;
   grid-template-rows: 50px 1fr   50px;
 }
-
-
-main{
-  grid-area: 'main';
+.wrapper{
+  display: flex;
+  justify-content: space-between;
+  padding: 30px;
+  
 }
+.products-wrapper{
+  width: 68%;
+  display: flex;
+  justify-content: space-between;
+}
+.filter-wrapper{
+  width: 30%;
+}
+header{
+  grid-area: "header"; 
+}
+main{
+  grid-area: "main";
+}
+footer{
+  grid-area: "footer";
+}
+.nav ul {
+  display: flex;
+  background-color: #ddd;
+  list-style: none;
+  padding: 10px 35px;
+}
+
+.nav ul li a {
+  display: block;
+  background-color: gray;
+  color: #fff;
+  padding: 5px 10px;
+  margin-right: 5px;
+  text-decoration: none;
+}
+
+.nav ul li a.active {
+  background-color: #2a5ea5;
+}
+

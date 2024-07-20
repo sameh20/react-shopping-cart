@@ -1,32 +1,32 @@
 [
     {
         "id":"id1",
-        "tite":"compouter",
-         "imageUrl":"./image/image1.jpg",
+        "title":"compouter",
+         "imageUrl":"./image/product1.jpeg",
          "desc":"This is Product 1",
          "price":50,
          "size":["M,S"]
     },
     {
         "id":"id2",
-        "tite":"product2",
-         "imageUrl":"./image/image2.jpg",
+        "title":"product2",
+         "imageUrl":"./image/product2.jpeg",
          "desc":"This is Product 2",
          "price":500,
          "size":["L","S","M"]
     },
     {
         "id":"id3",
-        "tite":"product3",
-         "imageUrl":"./image/image1.jpg",
+        "title":"product3",
+         "imageUrl":"./image/product3.jpg",
          "desc":"This is Product 3",
          "price":300,
          "size":["M","L"]
     },
     {
         "id":"id4",
-        "tite":"product4",
-         "imageUrl":"./image/image4.png",
+        "title":"product4",
+         "imageUrl":"./image/product4.png",
          "desc":"This is Product 4",
          "price":100,
          "size":["S","L","XL"]
