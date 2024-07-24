@@ -6,6 +6,7 @@ import data from './data.json';
 import './index.css';
 import Filter from './components/Filter/Filter.js';
 import Cart from './components/Cart/Cart.js';
+import Bounce from 'react-reveal/Bounce'
 
 function App() {
 const [products, setProducts] = useState(data)
