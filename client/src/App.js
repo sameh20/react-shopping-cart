@@ -6,8 +6,8 @@ import data from './data.json';
 import './index.css';
 import Filter from './components/Filter/Filter.js';
 import Cart from './components/Cart/Cart.js';
-import Bounce from 'react-reveal/Bounce'
-
+import store from './store/store.js';
+import {Provider} from 'react-redux'
 function App() {
 const [products, setProducts] = useState(data)
 const [size,setSize] = useState('')
@@ -17,7 +17,7 @@ const addToCart= (product)=>{
  const cartItemsClone = [...cartItems]
  let isProductExit= false
  cartItemsClone.forEach(p=>{
-  if(p.id == product.id){
+  if(p.id === product.id){
     p.Qty++
     isProductExit = true
   }
@@ -51,9 +51,9 @@ const handleFilterSort=(e)=>{
   setSort(order)
   let productsclone = [...products]
   let newProducts = productsclone.sort(function(a,b){
-    if(order =='lowest'){
+    if(order ==='lowest'){
       return a.price - b.price
-    }else if(order == 'highest'){
+    }else if(order === 'highest'){
       return b.price - a.price
     }else{
      return  a.id < b.id ? 1:-1
@@ -63,7 +63,8 @@ const handleFilterSort=(e)=>{
  }
 
   return (
-    <div className="layout">
+    <Provider store={store}>
+      <div className="layout">
     <Header/>
       <main>
         <div className='wrapper'>
@@ -82,6 +83,7 @@ const handleFilterSort=(e)=>{
       </main>
       <Footer/>
     </div>
+    </Provider>
   );
 }
 
