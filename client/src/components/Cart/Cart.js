@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 import "../../css/Cart/Cart.css"
 import Checkoutform from '../Checkout Form/Checkoutform';
 import Bounce from 'react-reveal/Bounce';
+import { connect } from "react-redux";
+import { removeCart } from '../../store/action/cart';
+
 
 
  function Cart(props) {
@@ -16,12 +19,12 @@ import Bounce from 'react-reveal/Bounce';
       name:value.name,
       email:value.email
     }
-    console.log(order)
   }
   return (
    
       <div className='cart-wrapper'>
-        <div className='cart-title'>{props.cartItems.length == 0 ? 'Empty Cart': <p>There are {props.cartItems.length} products</p>}</div>
+        <div className="cart-title"> {props.cartItems.length === 0 ? 'Cart Empty' : <p>
+          There is :{props.cartItems.length} products in cart </p>} </div>
         <Bounce bottom cascade>
         <div className='cart-items'>
        {props.cartItems.map(item=>(
@@ -33,7 +36,7 @@ import Bounce from 'react-reveal/Bounce';
              <p>Qty {item.Qty}</p>
              <p> ${item.price}</p>
              </div>
-         <button onClick={()=>props.removeItem(item)}>Remove</button>
+         <button onClick={()=>props.removeCart(item)}>Remove</button>
 
          </div>
     
@@ -60,4 +63,9 @@ import Bounce from 'react-reveal/Bounce';
     </div>
   )
 }
-export default Cart
+export default connect((state) =>{
+  return {
+      cartItems: state.cart.cartItems
+  }
+}, {removeCart} )(Cart)
+

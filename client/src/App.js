@@ -27,6 +27,7 @@ const addToCart= (product)=>{
  }setCartItems(cartItemsClone)
 
 }
+
 useEffect(()=>{
   localStorage.setItem('cartItems',JSON.stringify(cartItems))
 },[cartItems])
