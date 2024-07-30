@@ -1,21 +1,22 @@
 const express = require("express");
 const bodyParser = require("body-parser")
 const mongoose = require("mongoose");
-const router  = require("./Routes/Route")
+const productRouter  = require("./Routes/Route")
+const ordeRouter  = require("./Routes/orderRoutes");
+const runDB = require("./config/db");
+
 const app = express()
 
 
 app.use(bodyParser.json())
-app.use("/",router)
+app.use("/",productRouter)
+app.use("/",ordeRouter)
 
-const connection = "mongodb://0.0.0.0/shopingcart";
-mongoose.connect(connection)
-.then(res=>console.log('connectted successfully'))
-.catch(err=>console.log(err))
+// run config
+    const connection = "mongodb://0.0.0.0/shopingcart";
+   runDB()
 
-
-
-
+//order apis
 
 
 // server
