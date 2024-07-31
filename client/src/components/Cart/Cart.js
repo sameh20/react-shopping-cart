@@ -4,27 +4,42 @@ import Checkoutform from '../Checkout Form/Checkoutform';
 import Bounce from 'react-reveal/Bounce';
 import { connect } from "react-redux";
 import { removeCart } from '../../store/action/cart';
+import OrederModal from './OrederModal';
+import { clearOrder, createOrder } from '../../store/action/orders';
 
 
 
- function Cart(props) {
-  const [showForm,setShowForm]= useState(false)
-  const [value,setValue] = useState('')
-  const handleChange = (e)=>{
-  setValue((preValue)=>[{...preValue,[e.target.name]:e.target.value}])
+function Cart(props) {
+    
+  const [showForm, setShowForm] = useState(false);
+  const [order , setOrder] = useState(false);
+  const [value, setValue] = useState("")
+
+  const submitOrder = (e) => {
+      e.preventDefault();
+      const order = {
+          name : value.name,
+          email: value.email
+      }
+    props.createOrder(order);
   }
-  const submitOrder =(e)=>{
-    e.preventDefault()
-    const order = {
-      name:value.name,
-      email:value.email
-    }
+
+  const closeModal = () => {
+      props.clearOrder();
+      setShowForm(false)
+  }
+
+  const handleChange = (e) => {
+      setValue( (prevState) => ({ ...prevState, [e.target.name]: e.target.value}) )
   }
   return (
    
+
       <div className='cart-wrapper'>
         <div className="cart-title"> {props.cartItems.length === 0 ? 'Cart Empty' : <p>
           There is :{props.cartItems.length} products in cart </p>} </div>
+          {/*modal */}
+          <OrederModal cartItems ={props.cartItems} order ={props.order} closeModal={closeModal} />
         <Bounce bottom cascade>
         <div className='cart-items'>
        {props.cartItems.map(item=>(
@@ -57,7 +72,13 @@ import { removeCart } from '../../store/action/cart';
        )}
        {/* checkout form */} 
        
-     <Checkoutform showForm={showForm} handleChange={handleChange} submitOrder={submitOrder} setShowForm={setShowForm} />
+     <Checkoutform 
+      showForm={showForm}
+      setShowForm={setShowForm}
+       handleChange={handleChange} 
+      submitOrder={submitOrder}
+      closeModal={closeModal}/>
+      
 
        
     </div>
@@ -65,7 +86,8 @@ import { removeCart } from '../../store/action/cart';
 }
 export default connect((state) =>{
   return {
+      order :state.order.order,
       cartItems: state.cart.cartItems
   }
-}, {removeCart} )(Cart)
+}, {removeCart,createOrder,clearOrder} )(Cart)
 
