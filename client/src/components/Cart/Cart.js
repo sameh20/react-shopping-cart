@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { removeCart } from '../../store/action/cart';
 import OrederModal from './OrederModal';
 import { clearOrder, createOrder } from '../../store/action/orders';
+import { words } from '../../words';
 
 
 
@@ -37,7 +38,7 @@ function Cart(props) {
 
       <div className='cart-wrapper'>
         <div className="cart-title"> {props.cartItems.length === 0 ? 'Cart Empty' : <p>
-          There is :{props.cartItems.length} products in cart </p>} </div>
+        {words.cartHeader}{props.cartItems.length}  </p>} </div>
           {/*modal */}
           <OrederModal cartItems ={props.cartItems} order ={props.order} closeModal={closeModal} />
         <Bounce bottom cascade>
@@ -48,10 +49,10 @@ function Cart(props) {
          <div className='cart-info'>
             <div>
              <p>{item.title}</p>
-             <p>Qty {item.Qty}</p>
+             <p>{words.cartQty} {item.Qty}</p>
              <p> ${item.price}</p>
              </div>
-         <button onClick={()=>props.removeCart(item)}>Remove</button>
+         <button onClick={()=>props.removeCart(item)}>{words.removeBtn}</button>
 
          </div>
     
@@ -62,10 +63,10 @@ function Cart(props) {
         </Bounce>
         {props.cartItems.length !== 0 && (
           <div className='cart-footer'>
-          <div className='total'>Total : {props.cartItems.reduce((acc,p)=>{
+          <div className='total'>{words.total} : {props.cartItems.reduce((acc,p)=>{
               return acc +p.price
           },0)} $</div>
-          <button onClick={()=>setShowForm(true)}>Select Product</button>
+          <button onClick={()=>setShowForm(true)}>{words.selectProducts}</button>
         </div>
    
     
