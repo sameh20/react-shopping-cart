@@ -27,9 +27,9 @@ props.fetchOrders()
                     <td>{order.name}</td>
                     <td>{order.email}</td>
                     <td> {props.cartItems.map(p=>(
-                      <p>{p.title},Qty:{p.Qty}</p>
+                      <p>{p.title},Qty:{p.Qty}</p> 
 
-                    ))}</td>
+                    ))}</td> 
 
                 </tr>
                 ))}
