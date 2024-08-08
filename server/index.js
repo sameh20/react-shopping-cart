@@ -1,6 +1,12 @@
 const express = require("express");
 const app = express()
 const mongoose = require("mongoose");
+app.use(cors())
+app.use(express.json())
+app.use(express.urlencoded())
+app.use(express.static("public", {
+    index: false
+}))
 
 
 mongoose.connect('mongodb://0.0.0.0/testdb')
